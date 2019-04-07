@@ -1,0 +1,33 @@
+//welcome message
+bot.on("guildMemberAdd", async member => {
+    console.log(`${member.id} joined the server.`);
+
+    let welcomeChannel = member.guild.channels.find(`name`, "welcome-leave");
+    if (!welcomeChannel) return console.log("Could not log a member joining as the server doesn't have a log channel!");
+    let generalChannel = member.guild.channels.find(`name`, "general");
+    if (!welcomeChannel) return generalChannel("Cannot log the member that has joined your server. Please create a channel called #welcome-leave. :smiley:");
+
+    let welcomeEmbed = new Discord.RichEmbed()
+        .setDescription(`${member} has joined the server! Welcome :tada:`)
+        .setFooter("User Joined")
+        .setColor("#00f94a");
+
+    welcomeChannel.send(welcomeEmbed);
+}); */
+
+/* //leave message
+bot.on("guildMemberRemove", async member => {
+    console.log(`${member.id} left the server.`);
+
+    let leaveChannel = member.guild.channels.find(`name`, "welcome-leave");
+    if (!leaveChannel) return console.log("Could not log a member leaving as the server doesn't have a log channel!");
+    let generalChannel = member.guild.channels.find(`name`, "general");
+    if (!leaveChannel) return generalChannel("Cannot log the member that has left your server. Please create a channel called #welcome-leave. :smiley:");
+
+    let leaveEmbed = new Discord.RichEmbed()
+        .setDescription(`${member} has left the server! Cya next time! :(`)
+        .setFooter("User Left")
+        .setColor("#3693c1");
+
+    leaveChannel.send(leaveEmbed);
+});
